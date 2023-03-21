@@ -34,7 +34,7 @@ const Home = () => {
 
   return (
     <LayoutApp>
-      <h3>Table: {tableNumber}</h3>
+      {/* <h3>Table: {tableNumber}</h3> */}
       <div className="pos">
         <div className="category">
           <Row>
