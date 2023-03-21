@@ -49,9 +49,11 @@ Jimmy Tran
     - [Table Routes](#table-routes)
       - [Add Table](#add-table)
       - [Get All Tables](#get-all-tables)
-      - [Get A Specific Table](#get-a-specific-table)
       - [Update Tables](#update-tables)
       - [Delete Table](#delete-table)
+    - [Bill Routes](#bill-routes)
+      - [Add Bill](#add-bill)
+      - [Get All Bills](#get-bills)
       
       
       # Media
@@ -662,4 +664,72 @@ Response:
     }
   ],
   "msg": "Table deleted successfully
+```
+
+### Bill Routes
+
+#### Add Bill
+
+POST `api/bills/addbills`
+
+Adds a new bill to the database
+
+Request body should look like this:
+
+```
+{
+	"_id": "5bb91ad8d5461a87502efc83",	
+	"" : "12",
+	"cartItems" : [...],
+	"__v": 0
+	"createdAt": "date item was created",
+	"updatedAt": "date item was updated last",
+}
+```
+
+
+`bills`: Array of Objects with items in bill.
+
+Response includes the added items as an Array labelled cartItems:
+
+Response:
+
+```
+{
+"_id": "63d95f62c9fa35bc2bb12886"
+"tableNumber" : "12"
+"subTotal" : "77"
+"totalAmount" : "87.01"
+"tax" : "10.01"
+"paymentMethod" : "cash"
+"cartItems" : [],
+"createdAt" : "2023-01-31T18:35:14.220+00:00"
+"updatedAt" : "2023-01-31T18:35:14.220+00:00"
+__v : 0
+},
+msg: "Bill Created Successfully
+```
+
+#### Get Bills
+
+get `api/bills/getbills`
+
+
+Response:
+
+```
+{
+_id: 63d95f62c9fa35bc2bb12886
+tableNumber : "12"
+subTotal : 77
+totalAmount : 87.01
+tax : 10.01
+paymentMethod : "cash"
+cartItems: Array
+createdAt : 2023-01-31T18:35:14.220+00:00
+updatedAt : 2023-01-31T18:35:14.220+00:00
+__v : 0
+},
+...
+
 ```
