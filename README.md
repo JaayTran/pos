@@ -4,7 +4,7 @@ Welcome to my Restaurant Point-of-Sale System.
 ## Made by
 Jimmy Tran
 
-#Media
+# Media
 ![Table Bill](https://user-images.githubusercontent.com/38023521/226503915-e390052b-e0d4-4bfd-a211-b7eae2d88e1f.PNG)
 ![Add or Edit Product](https://user-images.githubusercontent.com/38023521/226503917-607a5d2b-8a17-424a-8c0f-7dd6c51eb71b.PNG)
 ![Add or Edit Table](https://user-images.githubusercontent.com/38023521/226503919-0a5141fe-707b-4bf4-b450-86ef6e2c8f10.PNG)
