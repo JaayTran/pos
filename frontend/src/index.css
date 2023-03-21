@@ -88,6 +88,7 @@ body {
 }
 
 .cart-action {
+  padding-left: 10px;
   cursor: pointer;
   transition: all 0.5s;
 }
@@ -281,4 +282,57 @@ body {
 .bills-btn-add .add-new {
   font-size: 12px !important;
   padding: 5px !important;
+}
+
+.cart-and-pos {
+  border: 2px solid #000;
+  overflow: hidden;
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; */
+}
+
+.cartscreen {
+  background-color: gray;
+  float: left;
+  width: 700px;
+  border-right: 2px solid #000;
+  /* margin: auto;
+  width: 39%; */
+}
+
+.ant-card-head-title {
+  text-overflow: unset;
+  white-space: unset;
+}
+
+.ant-table-tbody {
+  padding: 0 !important;
+}
+.ant-table-tbody > tr > td {
+  padding: 0 !important;
+  font-size: 30px;
+}
+
+.pos {
+  background-color: white;
+  overflow: hidden;
+  min-width: 800px;
+  margin: auto;
+  border: 2px dashed #ccc;
+  min-height: 170px;
+  /* margin: auto;
+  margin-left: 30px;
+  width: 59%; */
+}
+
+
+@media screen and (max-width: 400px) {
+  #cartscreen {
+    float: none;
+    margin-right: 0;
+    width: auto;
+    border: 0;
+    border-bottom: 2px solid #000;
+  }
 }

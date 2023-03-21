@@ -6,19 +6,19 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Modal, Select, Table, message } from "antd";
 import FormItem from "antd/lib/form/FormItem";
 
-const Products = () => {
+const Tables = () => {
   const dispatch = useDispatch();
-  const [productData, setProductData] = useState([]);
+  const [tableData, setTableData] = useState([]);
   const [popModal, setPopModal] = useState(false);
-  const [editProduct, setEditProduct] = useState(false);
+  const [editTable, setEditTable] = useState(false);
 
-  const getAllProducts = async () => {
+  const getAllTables = async () => {
     try {
       dispatch({
         type: "SHOW_LOADING",
       });
-      const { data } = await axios.get("/api/products/getproducts");
-      setProductData(data);
+      const { data } = await axios.get("/api/tables/gettables");
+      setTableData(data);
       dispatch({
         type: "HIDE_LOADING",
       });
@@ -32,7 +32,7 @@ const Products = () => {
   };
 
   useEffect(() => {
-    getAllProducts();
+    getAllTables();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -41,11 +41,11 @@ const Products = () => {
       dispatch({
         type: "SHOW_LOADING",
       });
-      await axios.post("/api/products/deleteproducts", {
-        productId: record._id,
+      await axios.post("/api/tables/deletetables", {
+        tableId: record._id,
       });
-      message.success("Product Deleted Successfully!");
-      getAllProducts();
+      message.success("Table Deleted Successfully!");
+      getAllTables();
       setPopModal(false);
       dispatch({
         type: "HIDE_LOADING",
@@ -61,12 +61,8 @@ const Products = () => {
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-    },
-    {
-      title: "Price",
-      dataIndex: "price",
+      title: "Table Number",
+      dataIndex: "tableNum",
     },
     {
       title: "Action",
@@ -80,7 +76,7 @@ const Products = () => {
           <EditOutlined
             className="cart-edit"
             onClick={() => {
-              setEditProduct(record);
+              setEditTable(record);
               setPopModal(true);
             }}
           />
@@ -91,14 +87,14 @@ const Products = () => {
 
   const handlerSubmit = async (value) => {
     //console.log(value);
-    if (editProduct === null) {
+    if (editTable === null) {
       try {
         dispatch({
           type: "SHOW_LOADING",
         });
-        await axios.post("/api/products/addproducts", value);
-        message.success("Product Added Successfully!");
-        getAllProducts();
+        await axios.post("/api/tables/addtables", value);
+        message.success("Tables Added Successfully!");
+        getAllTables();
         setPopModal(false);
         dispatch({
           type: "HIDE_LOADING",
@@ -115,12 +111,12 @@ const Products = () => {
         dispatch({
           type: "SHOW_LOADING",
         });
-        await axios.put("/api/products/updateproducts", {
+        await axios.put("/api/tables/updatetables", {
           ...value,
-          productId: editProduct._id,
+          tableId: editTable._id,
         });
-        message.success("Product Updated Successfully!");
-        getAllProducts();
+        message.success("Table Updated Successfully!");
+        getAllTables();
         setPopModal(false);
         dispatch({
           type: "HIDE_LOADING",
@@ -137,44 +133,34 @@ const Products = () => {
 
   return (
     <LayoutApp>
-      <h2>All Products </h2>
+      <h2>All Tables </h2>
       <Button
         className="add-new"
         onClick={() => {
           setPopModal(true);
-          setEditProduct(null);
+          setEditTable(null);
         }}
       >
         Add New
       </Button>
-      <Table dataSource={productData} columns={columns} bordered />
+      <Table dataSource={tableData} columns={columns} bordered />
 
       {popModal && (
         <Modal
-          title={`${editProduct !== null ? "Edit Product" : "Add New Product"}`}
+          title={`${editTable !== null ? "Edit Table" : "Add New Table"}`}
           visible={popModal}
           onCancel={() => {
-            setEditProduct(null);
+            setEditTable(null);
             setPopModal(false);
           }}
           footer={false}
         >
           <Form
             layout="vertical"
-            initialValues={editProduct}
+            initialValues={editTable}
             onFinish={handlerSubmit}
           >
-            <FormItem name="name" label="Name">
-              <Input />
-            </FormItem>
-            <Form.Item name="category" label="Category">
-              <Select>
-                <Select.Option value="Appetizers">Appetizers</Select.Option>
-                <Select.Option value="Mains">Mains</Select.Option>
-                <Select.Option value="Drinks">Drinks</Select.Option>
-              </Select>
-            </Form.Item>
-            <FormItem name="price" label="Price">
+            <FormItem name="tableNum" label="Table Number">
               <Input />
             </FormItem>
             <div className="form-btn-add">
@@ -189,4 +175,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Tables;

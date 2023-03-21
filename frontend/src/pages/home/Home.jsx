@@ -1,43 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import LayoutApp from '../../components/Layout';
-import { Row, Col } from 'antd';
-import Product from '../../components/Product';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import LayoutApp from "../../components/Layout";
+import { Row, Col } from "antd";
+import Product from "../../components/Product";
+import { useDispatch, useSelector } from "react-redux";
+import TableComp from "../../components/TableComp";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const [tableData, setTableData] = useState([]);
 
-  const [productData, setProductData] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('pizzas');
-  const categories = [
-    {
-      name: 'pizzas',
-      imageUrl:
-        'https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/27954/pizza-pepperoni-clipart-xl.png',
-    },
-    {
-      name: 'burgers',
-      imageUrl:
-        'https://cdn.pixabay.com/photo/2022/01/04/23/00/fast-food-6916101_960_720.png',
-    },
-    {
-      name: 'drinks',
-      imageUrl:
-        'https://images.vexels.com/media/users/3/246333/isolated/preview/9626dce3278f72220ea2736de64e6233-pink-cocktail-color-stroke.png',
-    },
-  ];
+  const tableNumber = useSelector((state) => state.tableNumber);
 
   useEffect(() => {
-    const getAllProducts = async () => {
+    const getAllTables = async () => {
       try {
         dispatch({
-          type: 'SHOW_LOADING',
+          type: "SHOW_LOADING",
         });
-        const { data } = await axios.get('/api/products/getproducts');
-        setProductData(data);
+        const { data } = await axios.get("/api/tables/gettables");
+        setTableData(data);
         dispatch({
-          type: 'HIDE_LOADING',
+          type: "HIDE_LOADING",
         });
         console.log(data);
       } catch (error) {
@@ -45,39 +29,25 @@ const Home = () => {
       }
     };
 
-    getAllProducts();
+    getAllTables();
   }, [dispatch]);
 
   return (
     <LayoutApp>
-      <div className="category">
-        {categories.map((category) => (
-          <div
-            key={category.name}
-            className={`categoryFlex ${
-              selectedCategory === category.name && 'category-active'
-            }`}
-            onClick={() => setSelectedCategory(category.name)}
-          >
-            <h3 className="categoryName">{category.name}</h3>
-            <img
-              src={category.imageUrl}
-              alt={category.name}
-              height={60}
-              width={60}
-            />
-          </div>
-        ))}
+      <h3>Table: {tableNumber}</h3>
+      <div className="pos">
+        <div className="category">
+          <Row>
+            {tableData.map((table) => (
+              <Col>
+                <center>
+                  <TableComp key={table.id} table={table} />
+                </center>
+              </Col>
+            ))}
+          </Row>
+        </div>
       </div>
-      <Row>
-        {productData
-          .filter((i) => i.category === selectedCategory)
-          .map((product) => (
-            <Col>
-              <Product key={product.id} product={product} />
-            </Col>
-          ))}
-      </Row>
     </LayoutApp>
   );
 };

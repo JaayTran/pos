@@ -1,46 +1,80 @@
-import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom'
-import 'antd/dist/antd.min.css';
-import './App.css';
-import Home from './pages/home/Home';
-import Products from './pages/products/Products';
-import Cart from './pages/cart/Cart';
-import Login from './pages/login/Login';
-import Register from './pages/register/Register';
-import Bills from './pages/bills/Bills';
-import Customers from './pages/customers/Customers';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import "antd/dist/antd.min.css";
+import "./App.css";
+import Pos from "./pages/pos/Pos";
+import Tables from "./pages/tables/Tables";
+import Products from "./pages/products/Products";
+import Login from "./pages/login/Login";
+import Bills from "./pages/bills/Bills";
+import Users from "./pages/users/Users";
+import Home from "./pages/home/Home";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={
-            <ProtectedRouter>
-              <Home />
-            </ProtectedRouter>
-            } />
-          <Route path="/products" element={
-            <ProtectedRouter>
-              <Products />
-            </ProtectedRouter>
-            } />
-          <Route path="/cart" element={
-            <ProtectedRouter>
-              <Cart />
-            </ProtectedRouter>
-            } />
-            <Route path="/bills" element={
-            <ProtectedRouter>
-              <Bills />
-            </ProtectedRouter>
-            } />
-            <Route path="/customers" element={
-            <ProtectedRouter>
-              <Customers />
-            </ProtectedRouter>
-            } />
+          <Route
+            path="/"
+            element={
+              <ProtectedRouter>
+                <Home />
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path="/pos"
+            element={
+              <ProtectedRouter>
+                <Pos />
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <ProtectedRouter>
+                <ProtectedAdminRouter>
+                  <Products />
+                </ProtectedAdminRouter>
+              </ProtectedRouter>
+            }
+          />
+
+          <Route
+            path="/bills"
+            element={
+              <ProtectedRouter>
+                <Bills />
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path="/tables"
+            element={
+              <ProtectedRouter>
+                <ProtectedAdminRouter>
+                  <Tables />
+                </ProtectedAdminRouter>
+              </ProtectedRouter>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRouter>
+                <ProtectedAdminRouter>
+                  <Users />
+                </ProtectedAdminRouter>
+              </ProtectedRouter>
+            }
+          />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </>
@@ -49,10 +83,18 @@ function App() {
 
 export default App;
 
-export function ProtectedRouter({children}) {
-  if(localStorage.getItem("auth")) {
+export function ProtectedRouter({ children }) {
+  if (localStorage.getItem("auth")) {
     return children;
   } else {
-    return <Navigate to="/login" />
+    return <Navigate to="/login" />;
+  }
+}
+
+export function ProtectedAdminRouter({ children }) {
+  if (JSON.parse(localStorage.getItem("auth")).isAdmin) {
+    return children;
+  } else {
+    return <Navigate to="/" />;
   }
 }
