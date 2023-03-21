@@ -4,8 +4,20 @@ Welcome to my Restaurant Point-of-Sale System.
 ## Made by
 Jimmy Tran
 
+#Media
+![Table Bill](https://user-images.githubusercontent.com/38023521/226503915-e390052b-e0d4-4bfd-a211-b7eae2d88e1f.PNG)
+![Add or Edit Product](https://user-images.githubusercontent.com/38023521/226503917-607a5d2b-8a17-424a-8c0f-7dd6c51eb71b.PNG)
+![Add or Edit Table](https://user-images.githubusercontent.com/38023521/226503919-0a5141fe-707b-4bf4-b450-86ef6e2c8f10.PNG)
+![Add or Edit Users](https://user-images.githubusercontent.com/38023521/226503920-ec3e4919-da8c-4e65-8f12-08fe3832048c.PNG)
+![Admin View TableScreen](https://user-images.githubusercontent.com/38023521/226503922-cc090095-9ecb-4b7a-a9d7-8c803fb8ad70.PNG)
+![Bills Viewed in Date Range](https://user-images.githubusercontent.com/38023521/226503924-fb6e3070-e896-4b0c-979a-99cf379cc482.PNG)
+![Login](https://user-images.githubusercontent.com/38023521/226503925-cb94de36-c5f9-4b40-a83c-9ae8df20cb76.PNG)
+![Non Admin View TableScreen](https://user-images.githubusercontent.com/38023521/226503926-c273fa1a-31b9-4067-b17f-a9ef3a64f550.PNG)
+![Table Pos Screen](https://user-images.githubusercontent.com/38023521/226503928-d4cd0ebf-4c26-4f38-99a3-79e5e09792df.PNG)
+
 # Table of Contents
 - [Restaurant POS](#restaurant-pos)
+- [Media](#media)
 - [Table of Contents](#table-of-contents)
 - [Scripts](#scripts)
   - [Running](#running)
