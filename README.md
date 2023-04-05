@@ -82,6 +82,8 @@ Jimmy Tran
 
 `PASS_SEC`: Secret Key for encrypting passwords when storing them in database.
 
+'PORT': Port number server will be running on. (Default 5000)
+
 # Tech-Stack
 
 ## Back-End Dependencies ```(Production)```
