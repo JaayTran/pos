@@ -6,8 +6,9 @@ Jimmy Tran
 
 # Table of Contents
 - [Restaurant POS](#restaurant-pos)
-- [Media](#media)
+
 - [Table of Contents](#table-of-contents)
+- [Media](#media)
 - [Scripts](#scripts)
   - [Running](#running)
 - [Environment Variables](#environment-variables)
