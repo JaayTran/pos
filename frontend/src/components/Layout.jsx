@@ -51,6 +51,10 @@ const LayoutApp = ({ children }) => {
             <Link to="/">Home</Link>
           </Menu.Item>
 
+          <Menu.Item key="/pos" icon={<HomeOutlined />}>
+            <Link to="/pos">POS</Link>
+          </Menu.Item>
+
           <Menu.Item key="/bills" icon={<MoneyCollectOutlined />}>
             <Link to="/bills">Bills</Link>
           </Menu.Item>
